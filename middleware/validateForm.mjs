@@ -17,11 +17,21 @@ export const validateCreateQuestion = (req, res, next) => {
     next();
 }
 
-export const validateCreateAnswer = (req,res,next) => {
+export const validateCreateAnswer = (req, res, next) => {
 
     if (req.body.content.length > 300) {
-        return res.status(400).json ({
-            message : "maximun of 300 characters"
+        return res.status(400).json({
+            message: "maximun of 300 characters"
+        })
+    }
+    next();
+}
+
+export const validateVote = (req, res, next) => {
+
+    if (req.body.vote !== 1 && req.body.vote !== -1) {
+        return res.status(400).json({
+            message: "Invalid vote value."
         })
     }
     next();
